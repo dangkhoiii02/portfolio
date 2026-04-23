@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Server, Database, BrainCircuit, Blocks } from "lucide-react";
+import { Server, Database, BrainCircuit, Activity } from "lucide-react";
 
 export default function About() {
     return (
@@ -15,24 +15,24 @@ export default function About() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="space-y-6">
-                        <h3 className="text-3xl font-bold text-slate-200 mb-6 tracking-tight">Turning Complexity into Elegance</h3>
+                        <h3 className="text-3xl font-bold text-slate-200 mb-6 tracking-tight">Backend Engineering & Systems Integration</h3>
                         <p className="text-lg text-slate-400 leading-relaxed font-medium">
-                            As a Computer Science student, my core foundation lies in backend development and system architecture. However, my true passion is <span className="text-cyan-400 font-bold">Agentic Coding</span> and integrating <span className="text-blue-400 font-bold">Artificial Intelligence</span> into practical web applications.
+                            As a motivated <span className="text-white font-bold">Computer Engineering</span> student at <span className="text-white font-bold">PTIT</span>, my core foundation lies in backend development, IoT systems, and complex architectural design.
                         </p>
                         <p className="text-lg text-slate-400 leading-relaxed font-medium">
-                            I excel at designing robust databases, optimizing complex logic, and deploying intelligent systems that solve real-world problems.
+                            I excel at designing robust databases (PostgreSQL, SQL Server, MongoDB, Graph databases like OrientDB), optimizing backend APIs (Spring Boot, Node.js), and deploying intelligent systems such as biometric liveness detection to solve real-world problems.
                         </p>
 
                         <div className="grid grid-cols-2 gap-6 pt-6">
                             <div className="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg">
                                 <Server className="w-10 h-10 text-cyan-500 mb-4" />
                                 <h4 className="font-bold text-slate-200 mb-2">Backend & APIs</h4>
-                                <p className="text-slate-500 text-sm">Scalable architecture</p>
+                                <p className="text-slate-500 text-sm">Spring Boot, REST APIs</p>
                             </div>
                             <div className="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/50 transition-colors shadow-lg">
                                 <Database className="w-10 h-10 text-indigo-500 mb-4" />
                                 <h4 className="font-bold text-slate-200 mb-2">Database Design</h4>
-                                <p className="text-slate-500 text-sm">Complex data modeling</p>
+                                <p className="text-slate-500 text-sm">PostgreSQL, SQL Server, MongoDB, OrientDB</p>
                             </div>
                         </div>
                     </motion.div>
@@ -44,12 +44,23 @@ export default function About() {
                                 <BrainCircuit className="w-64 h-64 animate-pulse" />
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                <Blocks className="w-8 h-8 text-cyan-400" />
-                                Personal Highlight
+                                <Activity className="w-8 h-8 text-cyan-400" />
+                                Personal Qualities
                             </h3>
-                            <p className="text-lg text-slate-400 leading-relaxed font-medium relative z-20">
-                                Beyond coding, I'm a huge fan of <strong className="text-cyan-400">LEGO</strong>. Building LEGO sets is incredibly similar to software development: combining small, fundamental blocks to create complex, functional masterpieces. It fuels my creativity and structural thinking.
-                            </p>
+                            <ul className="text-lg text-slate-400 leading-relaxed font-medium space-y-3 relative z-20">
+                                <li className="flex items-center gap-3">
+                                    <span className="w-2 h-2 rounded-full bg-cyan-500"></span> Fast learner & Problem-solving mindset
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <span className="w-2 h-2 rounded-full bg-cyan-500"></span> Teamwork oriented & Responsible
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <span className="w-2 h-2 rounded-full bg-cyan-500"></span> Strong technical curiosity
+                                </li>
+                                <li className="flex items-center gap-3">
+                                    <span className="w-2 h-2 rounded-full bg-cyan-500"></span> English (Technical Reading)
+                                </li>
+                            </ul>
                         </div>
                     </motion.div>
                 </div>

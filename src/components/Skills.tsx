@@ -1,37 +1,47 @@
 "use client";
 import { motion } from "framer-motion";
-import { Cpu, AppWindow, Database } from "lucide-react";
+import { Cpu, Server, Database, AppWindow } from "lucide-react";
 
 const skillCategories = [
     {
-        title: "AI & Machine Learning",
-        icon: <Cpu className="w-8 h-8 text-cyan-400" />,
-        color: "from-cyan-950 to-slate-950",
-        borderHover: "hover:border-cyan-500/50",
-        shadowHover: "hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]",
-        badgeBg: "bg-cyan-950/40 border-cyan-800/40 text-cyan-300",
-        badgeHover: "hover:bg-cyan-500 hover:text-slate-950 font-bold",
-        skills: ["Fine-tuning LLMs", "Qwen2.5", "PhoGPT", "Unsloth", "Digital Signal Processing", "DeepFilterNet", "TFLite"],
-    },
-    {
-        title: "Development & Coding",
-        icon: <AppWindow className="w-8 h-8 text-blue-400" />,
+        title: "Backend & Systems",
+        icon: <Server className="w-8 h-8 text-blue-400" />,
         color: "from-blue-950 to-slate-950",
         borderHover: "hover:border-blue-500/50",
         shadowHover: "hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]",
         badgeBg: "bg-blue-950/40 border-blue-800/40 text-blue-300",
         badgeHover: "hover:bg-blue-500 hover:text-slate-950 font-bold",
-        skills: ["Python", "Flutter", "C++", "Cursor", "Claude Code"],
+        skills: ["Java", "Spring Boot", "Node.js", "Express", "REST APIs", "Microservices Architecture"],
     },
     {
-        title: "Database & System",
+        title: "Database & DevOps",
         icon: <Database className="w-8 h-8 text-emerald-400" />,
         color: "from-emerald-950 to-slate-950",
         borderHover: "hover:border-emerald-500/50",
         shadowHover: "hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]",
         badgeBg: "bg-emerald-950/40 border-emerald-800/40 text-emerald-300",
         badgeHover: "hover:bg-emerald-500 hover:text-slate-950 font-bold",
-        skills: ["PostgreSQL", "Database Schema Design"],
+        skills: ["PostgreSQL", "MongoDB", "OrientDB", "MSSQL", "Docker", "Git/GitHub", "CI/CD"],
+    },
+    {
+        title: "Python, AI & IoT",
+        icon: <Cpu className="w-8 h-8 text-cyan-400" />,
+        color: "from-cyan-950 to-slate-950",
+        borderHover: "hover:border-cyan-500/50",
+        shadowHover: "hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]",
+        badgeBg: "bg-cyan-950/40 border-cyan-800/40 text-cyan-300",
+        badgeHover: "hover:bg-cyan-500 hover:text-slate-950 font-bold",
+        skills: ["Python", "Vision Transformer (ViT)", "Liveness Detection", "IoT System Design", "C++"],
+    },
+    {
+        title: "Frontend & Tools",
+        icon: <AppWindow className="w-8 h-8 text-purple-400" />,
+        color: "from-purple-950 to-slate-950",
+        borderHover: "hover:border-purple-500/50",
+        shadowHover: "hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]",
+        badgeBg: "bg-purple-950/40 border-purple-800/40 text-purple-300",
+        badgeHover: "hover:bg-purple-500 hover:text-slate-950 font-bold",
+        skills: ["React", "Vite", "JavaScript", "HTML/CSS", "Tailwind CSS"],
     },
 ];
 
@@ -52,7 +62,7 @@ export default function Skills() {
                     <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 mx-auto rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={category.title}

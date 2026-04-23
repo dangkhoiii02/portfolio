@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Terminal, Cpu } from "lucide-react";
+import { ArrowRight, Download, Terminal } from "lucide-react";
 
 export default function Hero() {
     return (
@@ -18,7 +18,7 @@ export default function Hero() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                     </span>
-                    System Online & Ready
+                    Software Developer
                 </motion.div>
 
                 <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tighter">
@@ -29,11 +29,11 @@ export default function Hero() {
                 </motion.h1>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="text-xl md:text-2xl text-slate-400 font-medium mb-4 max-w-3xl mx-auto tracking-tight">
-                    Computer Science Student <span className="text-cyan-500">|</span> Passionate about Web Dev & AI
+                    Computer Engineering Student @ PTIT <span className="text-cyan-500">|</span> Passionate about Backend Architecture
                 </motion.p>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Focused on <span className="text-slate-300 font-semibold border-b border-cyan-500/30 pb-0.5">agentic coding</span>, building <span className="text-slate-300 font-semibold">AI-integrated applications</span>, and cross-platform software development.
+                    Focused on <span className="text-slate-300 font-semibold border-b border-cyan-500/30 pb-0.5">robust Backend Development</span>, IoT Systems Integration, Python applications, and biometric liveness detection algorithms.
                 </motion.p>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }} className="flex flex-col sm:flex-row gap-4 justify-center items-center">

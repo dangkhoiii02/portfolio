@@ -6,45 +6,45 @@ import { ArrowUpRight } from "lucide-react";
 
 const projects = [
     {
-        title: "Zalo Clone",
-        description: "Real-time messaging application simulating Zalo, featuring complete chat, calling, and profile management capabilities.",
-        learned: "Socket.io / WebRTC for real-time comms, Microservices architecture, complex state management, and smooth chat UI design.",
-        github: "https://github.com/dangkhoiii02/Zalo_Clone",
-        tags: ["React", "Node.js", "Socket.io"],
+        title: "Zalo Clone (Spring Boot)",
+        description: "Enterprise-grade real-time messaging platform inspired by Zalo, focusing on performance and scalability.",
+        learned: "Applied Java Spring Boot, Microservices architecture, WebSocket for real-time chatting, and database transactions.",
+        github: "https://github.com/dangkhoiii02/Zalo_Clone_SpringBoot",
+        tags: ["Java", "Spring Boot", "Microservices", "WebSocket"],
         image: null,
-        gradient: "from-blue-500 to-cyan-400"
+        gradient: "from-blue-600 to-cyan-500"
     },
     {
         title: "Liveness Detection",
-        description: "A biometric liveness detection system guarding against facial spoofing and presentation attacks.",
-        learned: "Building Deep Learning models (MobileNet, ResNet), Data Preprocessing, and OpenCV integration for fast inference.",
+        description: "A biometric liveness detection IoT pipeline safeguarding against facial spoofing and presentation attacks.",
+        learned: "Integrated IoT camera modules, Python-based Vision Transformer (ViT) models, and real-time processing algorithms.",
         github: "https://github.com/dangkhoiii02/LivenessDetection",
-        tags: ["AI", "Computer Vision", "Biometrics"],
+        tags: ["Python", "ViT", "Computer Vision", "IoT"],
         image: null,
-        gradient: "from-indigo-500 to-purple-500"
+        gradient: "from-indigo-600 to-purple-500"
     },
     {
         title: "Grapfity",
-        description: "Collaborative team project focused on professional software development lifecycle and workflows.",
-        learned: "Agile/Scrum methodologies, consistent UI/UX design systems, and foundational CI/CD pipelines.",
+        description: "Full-stack web application with complete frontend and backend business logic separation.",
+        learned: "Utilized Vite, Express.js REST APIs, Microsoft SQL Server (MSSQL), and Docker containerization.",
         github: "https://github.com/ntkhai268/grapfity",
-        tags: ["Teamwork", "Software Engineering"],
+        tags: ["React", "Express.js", "MSSQL", "Docker"],
         image: "/assets/grapfity.png",
         gradient: ""
     },
     {
-        title: "VBPL Data Extractor",
-        description: "Vietnamese legal document entity extraction tool converting unstructured Word files into JSON using local LLMs.",
-        learned: "Custom Prompt Engineering for Qwen, inference optimization using Apple Metal, parsing unstructured legal data.",
-        github: "https://huggingface.co/dangkhoi0202/qwen2.5-3b-legal-json-adapter",
-        tags: ["Python", "Local LLMs", "Apple Silicon", "Data Extraction"],
+        title: "AstroParty",
+        description: "Interactive Python-based desktop application focusing on advanced user interaction flows.",
+        learned: "Applied modular OOP principles, customized game logic routing, and application state debugging.",
+        github: "https://github.com/ntkhai268/AstroParty",
+        tags: ["Python", "OOP", "Game Logic"],
         image: null,
-        gradient: "from-emerald-500 to-teal-400"
+        gradient: "from-yellow-500 to-orange-500"
     },
     {
         title: "Real-time Noise Suppression",
-        description: "AI-based real-time audio noise suppression application in C++, optimized to run directly on an ESP32-S3 microcontroller.",
-        learned: "Digital Signal Processing (DSP), TinyML model quantization, and embedded C/C++ programming.",
+        description: "Edge AI application running audio noise suppression directly on a constrained ESP32-S3 microcontroller.",
+        learned: "Digital Signal Processing (DSP), TinyML model deployment, and embedded C/C++ bare-metal programming.",
         github: "https://github.com/dangkhoiii02/masking_denoiser",
         tags: ["C++", "ESP32-S3", "Audio Processing"],
         image: "/assets/noise-suppression.png",
@@ -52,10 +52,10 @@ const projects = [
     },
     {
         title: "Course Registration System",
-        description: "Complex PostgreSQL database schema design modeling university course enrollment and management use cases.",
-        learned: "Normalized RDBMS schema design (ERD), advanced SQL query optimization, and educational system analysis.",
+        description: "Robust database system handling complex academic enrollment workflows and concurrency.",
+        learned: "Relational database schema design (ERD), PostgreSQL query optimization, and transaction handling.",
         github: "https://github.com/dangkhoiii02/CourseRegistrationSystem_KTVTKPM",
-        tags: ["PostgreSQL", "System Analysis", "Database Design"],
+        tags: ["PostgreSQL", "Database Design", "Concurrency"],
         image: "/assets/registration-system.png",
         gradient: ""
     },
@@ -99,7 +99,7 @@ export default function Projects() {
                                     />
                                 ) : (
                                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} group-hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center opacity-80 group-hover:opacity-100`}>
-                                        <span className="text-slate-950 font-black text-7xl opacity-50 tracking-tighter">
+                                        <span className="text-slate-950 font-black text-6xl opacity-50 tracking-tighter text-center px-4">
                                             {project.title.substring(0, 2).toUpperCase()}
                                         </span>
                                     </div>
