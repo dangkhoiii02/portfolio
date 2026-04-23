@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Phạm Đăng Khôi | Personal Portfolio",
-  description: "Sinh viên Khoa học Máy tính | Đam mê Web Development & Artificial Intelligence.",
+  title: "DangKhoii.Dev | Portfolio",
+  description: "Personal portfolio displaying Web & AI agentic coding capabilities.",
 };
 
 export default function RootLayout({
@@ -18,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} antialiased`} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>{children}</body>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`${inter.className} bg-slate-950 text-slate-50 antialiased`} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

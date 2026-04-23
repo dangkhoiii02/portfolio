@@ -1,82 +1,57 @@
 "use client";
 import { motion } from "framer-motion";
-import { Brain, Code, Puzzle, Cpu } from "lucide-react";
+import { Server, Database, BrainCircuit, Blocks } from "lucide-react";
 
 export default function About() {
     return (
-        <section id="about" className="py-32 bg-white relative overflow-hidden">
-            <div className="absolute left-0 top-1/2 w-96 h-96 bg-slate-100 rounded-full blur-[100px] -z-10 opacity-70"></div>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-20"
-                >
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Giới Thiệu Bản Thân</h2>
-                    <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+        <section id="about" className="py-32 bg-slate-950 relative overflow-hidden flex items-center">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-900/20 rounded-full blur-[120px] -z-10"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.5 }} className="text-center mb-20">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">About Me</h2>
+                    <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto rounded-full"></div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7 }}
-                        className="space-y-8 text-lg text-slate-600"
-                    >
-                        <p className="leading-loose text-xl font-medium text-slate-700">
-                            Tôi là một lập trình viên yêu thích việc giải quyết các bài toán phức tạp từ <span className="text-blue-700 bg-blue-50 px-2 py-1 rounded-md font-bold">logic backend</span>,
-                            <span className="text-indigo-700 bg-indigo-50 px-2 py-1 rounded-md mx-1 font-bold">tích hợp AI</span> cho đến thiết kế UI/UX thân thiện.
-                            Tôi luôn tìm tòi các công nghệ mới nhất để tối ưu hóa quy trình làm việc.
+                    <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="space-y-6">
+                        <h3 className="text-3xl font-bold text-slate-200 mb-6 tracking-tight">Turning Complexity into Elegance</h3>
+                        <p className="text-lg text-slate-400 leading-relaxed font-medium">
+                            As a Computer Science student, my core foundation lies in backend development and system architecture. However, my true passion is <span className="text-cyan-400 font-bold">Agentic Coding</span> and integrating <span className="text-blue-400 font-bold">Artificial Intelligence</span> into practical web applications.
                         </p>
-                        <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-3xl p-8 relative overflow-hidden shadow-lg shadow-blue-100/50"
-                        >
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-                                className="absolute -right-8 -bottom-8 opacity-20 text-blue-500"
-                            >
-                                <Puzzle size={160} />
-                            </motion.div>
-                            <h3 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
-                                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm"><Puzzle size={24} /></div>
-                                Điểm nhấn cá nhân
-                            </h3>
-                            <p className="text-blue-800/90 relative z-10 font-semibold text-lg leading-relaxed">
-                                Có tư duy logic tốt và sự kiên nhẫn cao. Điều này thể hiện qua niềm đam mê ngồi hàng giờ
-                                liền để lắp ráp các bộ LEGO phức tạp, cũng như kiên trì debbugger những dòng code khó nhằn.
-                            </p>
-                        </motion.div>
+                        <p className="text-lg text-slate-400 leading-relaxed font-medium">
+                            I excel at designing robust databases, optimizing complex logic, and deploying intelligent systems that solve real-world problems.
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-6 pt-6">
+                            <div className="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg">
+                                <Server className="w-10 h-10 text-cyan-500 mb-4" />
+                                <h4 className="font-bold text-slate-200 mb-2">Backend & APIs</h4>
+                                <p className="text-slate-500 text-sm">Scalable architecture</p>
+                            </div>
+                            <div className="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/50 transition-colors shadow-lg">
+                                <Database className="w-10 h-10 text-indigo-500 mb-4" />
+                                <h4 className="font-bold text-slate-200 mb-2">Database Design</h4>
+                                <p className="text-slate-500 text-sm">Complex data modeling</p>
+                            </div>
+                        </div>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 to-transparent blur-3xl -z-10 rounded-full opacity-50"></div>
-                        {[
-                            { icon: Brain, title: "AI Integration", desc: "Ứng dụng LLMs & Machine Learning", color: "text-purple-600", bg: "bg-purple-100" },
-                            { icon: Code, title: "Clean Code", desc: "Viết logic sáng sủa, dễ bảo trì", color: "text-blue-600", bg: "bg-blue-100" },
-                            { icon: Cpu, title: "System Design", desc: "Kiến trúc hệ thống tối ưu", color: "text-emerald-600", bg: "bg-emerald-100" },
-                        ].map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                                whileHover={{ y: -8, scale: 1.02 }}
-                                className={`bg-white border border-slate-100 p-8 rounded-3xl shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 ${idx === 2 ? "sm:col-span-2 sm:w-[calc(50%-12px)] justify-self-center" : ""}`}
-                            >
-                                <div className={`w-14 h-14 ${item.bg} rounded-2xl flex items-center justify-center ${item.color} mb-6 shadow-inner`}>
-                                    <item.icon size={28} />
-                                </div>
-                                <h4 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h4>
-                                <p className="text-slate-500 font-medium">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-indigo-600 rounded-3xl blur-[80px] opacity-20"></div>
+                        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-10 relative z-10 glass-effect overflow-hidden shadow-2xl">
+                            <div className="absolute -top-10 -right-10 opacity-5">
+                                <BrainCircuit className="w-64 h-64 animate-pulse" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <Blocks className="w-8 h-8 text-cyan-400" />
+                                Personal Highlight
+                            </h3>
+                            <p className="text-lg text-slate-400 leading-relaxed font-medium relative z-20">
+                                Beyond coding, I'm a huge fan of <strong className="text-cyan-400">LEGO</strong>. Building LEGO sets is incredibly similar to software development: combining small, fundamental blocks to create complex, functional masterpieces. It fuels my creativity and structural thinking.
+                            </p>
+                        </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
