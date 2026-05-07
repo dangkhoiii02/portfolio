@@ -6,6 +6,15 @@ import { ArrowUpRight } from "lucide-react";
 
 const projects = [
     {
+        title: "Kiro Chat",
+        description: "Full-stack real-time chat platform supporting one-to-one/group messaging, file sharing, online presence, and voice/video calls.",
+        learned: "Implemented Spring Boot backend, Angular web, Android app, Keycloak auth, RabbitMQ message broker, MinIO storage, LiveKit video calls, and Docker.",
+        github: "https://github.com/dangkhoiii02/Kiro-Chat---Real-time-Messaging-App.git",
+        tags: ["Spring Boot", "Angular", "Android", "RabbitMQ", "LiveKit"],
+        image: null,
+        gradient: "from-emerald-600 to-teal-500"
+    },
+    {
         title: "Zalo Clone (Spring Boot)",
         description: "Enterprise-grade real-time messaging platform inspired by Zalo, focusing on performance and scalability.",
         learned: "Applied Java Spring Boot, Microservices architecture, WebSocket for real-time chatting, and database transactions.",
