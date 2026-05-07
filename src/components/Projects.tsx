@@ -11,7 +11,7 @@ const projects = [
         learned: "Implemented Spring Boot backend, Angular web, Android app, Keycloak auth, RabbitMQ message broker, MinIO storage, LiveKit video calls, and Docker.",
         github: "https://github.com/dangkhoiii02/Kiro-Chat---Real-time-Messaging-App.git",
         tags: ["Spring Boot", "Angular", "Android", "RabbitMQ", "LiveKit"],
-        image: null,
+        image: "/assets/kiro.png",
         gradient: "from-emerald-600 to-teal-500"
     },
     {
