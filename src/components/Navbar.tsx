@@ -77,7 +77,7 @@ export default function Navbar() {
         </details>
 
         <Link className="home-avatar" href="/" aria-label={`${profile.name}, home`}>
-          <Image src="/assets/avatar-icon.webp" alt="" width={48} height={48} unoptimized />
+          <Image src="/assets/site-mark.webp" alt="" width={48} height={48} unoptimized />
         </Link>
 
         <div className="header-actions">
