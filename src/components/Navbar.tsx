@@ -1,66 +1,95 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Menu, X, Code2 } from "lucide-react";
-import { motion } from "framer-motion";
 
-const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+import { Mail, Menu, Moon, Sun, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaGithub } from "react-icons/fa";
+import { profile } from "@/content/profile";
+
+const links = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Articles", href: "/articles" },
 ];
 
+function toggleTheme() {
+  const root = document.documentElement;
+  const currentTheme = root.dataset.theme ??
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const theme = currentTheme === "dark" ? "light" : "dark";
+
+  root.dataset.theme = theme;
+  try {
+    window.localStorage.setItem("portfolio-theme", theme);
+  } catch {
+    // The switch still works for this page if storage is unavailable.
+  }
+}
+
 export default function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-    useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  function current(href: string) {
+    if (href === pathname) return "page";
+    if (href !== "/" && pathname.startsWith(`${href}/`)) return "location";
+    return undefined;
+  }
 
-    return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-slate-950/80 backdrop-blur-md border-b border-cyan-900/30 shadow-lg shadow-cyan-900/10 py-3" : "bg-transparent py-5"}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center">
-                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-2 cursor-pointer group">
-                        <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl group-hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all">
-                            <Code2 className="w-6 h-6 text-white" />
-                        </div>
-                        <span className="text-2xl font-black tracking-tight text-white">
-                            DangKhoii<span className="text-cyan-400">.Dev</span>
-                        </span>
-                    </motion.div>
-
-                    <div className="hidden md:flex space-x-8">
-                        {navItems.map((item, index) => (
-                            <motion.a key={item.name} href={item.href} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="text-slate-300 hover:text-cyan-400 text-sm font-bold tracking-wide uppercase transition-colors relative group">
-                                {item.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
-                            </motion.a>
-                        ))}
-                    </div>
-
-                    <div className="md:hidden flex items-center">
-                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 hover:text-cyan-400 focus:outline-none">
-                            {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {mobileMenuOpen && (
-                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="md:hidden bg-slate-950 border-b border-cyan-900/30">
-                    <div className="px-4 pt-2 pb-6 space-y-2">
-                        {navItems.map((item) => (
-                            <a key={item.name} href={item.href} onClick={() => setMobileMenuOpen(false)} className="block px-3 py-3 text-base font-bold text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50 rounded-lg">
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
-                </motion.div>
-            )}
+  return (
+    <header className="site-header">
+      <div className="shell header-inner">
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {links.map(({ label, href }) => (
+            <Link key={href} href={href} aria-current={current(href)}>{label}</Link>
+          ))}
         </nav>
-    );
+
+        <details
+          className="mobile-nav"
+          onKeyDown={(event) => {
+            if (event.key === "Escape" && event.currentTarget.open) {
+              event.currentTarget.open = false;
+              event.currentTarget.querySelector("summary")?.focus();
+            }
+          }}
+        >
+          <summary className="icon-button" aria-label="Navigation menu">
+            <Menu className="menu-open-icon" size={22} />
+            <X className="menu-close-icon" size={22} />
+          </summary>
+          <nav aria-label="Mobile navigation">
+            {links.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={current(href)}
+                onClick={(event) => {
+                  const menu = event.currentTarget.closest("details");
+                  if (menu) menu.open = false;
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </details>
+
+        <Link className="monogram" href="/" aria-label={`${profile.name}, home`}>DK<span aria-hidden="true">.</span></Link>
+
+        <div className="header-actions">
+          <a className="icon-button" href={profile.github} aria-label="GitHub profile">
+            <FaGithub size={20} />
+          </a>
+          <a className="icon-button header-email" href={`mailto:${profile.email}`} aria-label="Email Khôi">
+            <Mail size={19} />
+          </a>
+          <button className="icon-button theme-toggle" type="button" aria-label="Toggle color theme" onClick={toggleTheme}>
+            <Moon className="moon-icon" size={19} />
+            <Sun className="sun-icon" size={20} />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 }
