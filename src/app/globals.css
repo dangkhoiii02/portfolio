@@ -116,24 +116,19 @@ button, summary { cursor: pointer; }
 .desktop-nav a:hover::after, .desktop-nav a[aria-current]::after,
 .mobile-nav a:hover::after, .mobile-nav a[aria-current]::after { transform: scaleX(1); }
 
-.monogram {
-  display: grid;
+.home-avatar {
+  display: block;
+  overflow: hidden;
   width: 3rem;
-  height: 2.85rem;
-  grid-auto-flow: column;
-  place-content: center;
-  border: 1px solid var(--button);
+  height: 3rem;
+  border: 1px solid var(--line);
   border-radius: .78rem;
-  background: var(--button);
-  color: var(--button-text);
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -.07em;
-  transition: transform .23s ease, background-color .23s ease, color .23s ease;
+  background: var(--tint);
+  transition: transform .23s ease, border-color .23s ease;
 }
 
-.monogram span { color: light-dark(#ffc39c, #903514); }
-.monogram:hover { transform: rotate(-7deg); }
+.home-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.home-avatar:hover { transform: rotate(-7deg); border-color: var(--accent); }
 
 .header-actions {
   justify-self: end;
@@ -1176,7 +1171,7 @@ button, summary { cursor: pointer; }
 
 @media (max-width: 400px) {
   .header-actions { gap: 0; }
-  .monogram { width: 2.75rem; height: 2.65rem; }
+  .home-avatar { width: 2.75rem; height: 2.75rem; }
   .hero h1 { font-size: clamp(2.15rem, 10.45vw, 2.65rem); }
   .page-heading h1 { font-size: clamp(2.65rem, 11.4vw, 3.1rem); }
   .skills-grid { grid-template-columns: minmax(0, 1fr); }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Mail, Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
@@ -75,7 +76,9 @@ export default function Navbar() {
           </nav>
         </details>
 
-        <Link className="monogram" href="/" aria-label={`${profile.name}, home`}>DK<span aria-hidden="true">.</span></Link>
+        <Link className="home-avatar" href="/" aria-label={`${profile.name}, home`}>
+          <Image src="/assets/avatar-icon.webp" alt="" width={48} height={48} unoptimized />
+        </Link>
 
         <div className="header-actions">
           <a className="icon-button" href={profile.github} aria-label="GitHub profile">
