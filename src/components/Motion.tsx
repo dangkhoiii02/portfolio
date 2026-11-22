@@ -4,9 +4,25 @@ import { animate, motion, useInView, useReducedMotion, useScroll } from "framer-
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export function PageWipe() {
+export function RouteTransition() {
   const pathname = usePathname();
-  return <div key={pathname} className="page-wipe" aria-hidden="true"><span /><span /></div>;
+  const previousPath = useRef(pathname);
+  const overlay = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (previousPath.current === pathname) return;
+
+    previousPath.current = pathname;
+    overlay.current?.setAttribute("data-active", "");
+  }, [pathname]);
+
+  return (
+    <div key={pathname} ref={overlay} className="route-transition" aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </div>
+  );
 }
 
 export function Reveal({ children, className, delay = 0 }: {
