@@ -22,3 +22,11 @@ export const internship = {
     "Tested both tools manually with teammates and fixed issues based on their feedback.",
   ],
 };
+
+export const studentResearch = {
+  title: "Student research",
+  period: "2024",
+  organization: "PTIT Ho Chi Minh City",
+  topic: "Graph databases",
+  contribution: "Helped build an OrientDB course-registration prototype to model prerequisites and compare graph and relational queries.",
+};

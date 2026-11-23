@@ -1,7 +1,7 @@
 import { BriefcaseBusiness, Network } from "lucide-react";
 import AnimatedArtwork from "@/components/AnimatedArtwork";
 import { Reveal, Timeline } from "@/components/Motion";
-import { internship, profile } from "@/content/profile";
+import { internship, profile, studentResearch } from "@/content/profile";
 
 export default function Experience() {
   return (
@@ -27,10 +27,10 @@ export default function Experience() {
           <li className="timeline-item">
             <Network className="timeline-marker" aria-hidden="true" />
             <Reveal className="profile-card">
-              <p className="profile-meta">2024 · PTIT Ho Chi Minh City</p>
-              <h3>Student research</h3>
-              <p className="profile-organization">Graph databases</p>
-              <p>Helped build an OrientDB course-registration prototype to model prerequisites and compare graph and relational queries.</p>
+              <p className="profile-meta">{studentResearch.period} · {studentResearch.organization}</p>
+              <h3>{studentResearch.title}</h3>
+              <p className="profile-organization">{studentResearch.topic}</p>
+              <p>{studentResearch.contribution}</p>
             </Reveal>
           </li>
         </Timeline>
