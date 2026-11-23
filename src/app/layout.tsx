@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { RouteTransition } from "@/components/Motion";
+import { RouteContent } from "@/components/Motion";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"], variable: "--font-inter" });
@@ -35,8 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <Navbar />
-        <RouteTransition />
-        <main id="main-content" tabIndex={-1}>{children}</main>
+        <RouteContent>{children}</RouteContent>
         <Footer />
       </body>
     </html>

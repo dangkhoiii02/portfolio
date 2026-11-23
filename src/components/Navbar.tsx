@@ -1,18 +1,13 @@
 "use client";
 
 import { Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { LayoutGroup, motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
+import { navigation, navigationDuration, navigationEase, navigationIndex } from "@/content/navigation";
 import { profile } from "@/content/profile";
-
-const links = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Articles", href: "/articles" },
-];
 
 function toggleTheme() {
   const root = document.documentElement;
@@ -30,20 +25,34 @@ function toggleTheme() {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const activeIndex = navigationIndex(pathname);
 
-  function current(href: string) {
-    if (href === pathname) return "page";
-    if (href !== "/" && pathname.startsWith(`${href}/`)) return "location";
-    return undefined;
+  function current(index: number, href: string) {
+    if (index === activeIndex) return pathname === href ? "page" : "location";
   }
 
   return (
     <header className="site-header">
       <div className="shell header-inner">
         <nav className="desktop-nav" aria-label="Main navigation">
-          {links.map(({ label, href }) => (
-            <Link key={href} href={href} aria-current={current(href)}>{label}</Link>
-          ))}
+          <MotionConfig reducedMotion="user">
+            <LayoutGroup id="portfolio-nav">
+              {navigation.map(({ label, href }, index) => (
+                <Link key={href} href={href} aria-current={current(index, href)}>
+                  {label}
+                  {index === activeIndex && (
+                    <motion.span
+                      className="nav-indicator"
+                      layoutId="active-link"
+                      initial={false}
+                      transition={{ duration: navigationDuration / 1000, ease: navigationEase }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </Link>
+              ))}
+            </LayoutGroup>
+          </MotionConfig>
         </nav>
 
         <details
@@ -60,11 +69,11 @@ export default function Navbar() {
             <X className="menu-close-icon" size={22} />
           </summary>
           <nav aria-label="Mobile navigation">
-            {links.map(({ label, href }) => (
+            {navigation.map(({ label, href }, index) => (
               <Link
                 key={href}
                 href={href}
-                aria-current={current(href)}
+                aria-current={current(index, href)}
                 onClick={(event) => {
                   const menu = event.currentTarget.closest("details");
                   if (menu) menu.open = false;

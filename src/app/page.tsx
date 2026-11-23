@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <section id="projects" className="shell home-highlights" aria-labelledby="highlights-title">
-        <h2 id="highlights-title">Explore the work<span>.</span></h2>
+        <h2 id="highlights-title">Selected work<span>.</span></h2>
         <div className="home-link-grid">
           {highlights.map(({ title, text, href, icon: Icon }, index) => (
             <Reveal key={title} delay={index * 0.07}>

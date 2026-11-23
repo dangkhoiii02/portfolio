@@ -3,25 +3,35 @@
 import { animate, motion, useInView, useReducedMotion, useScroll } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { navigationDuration, navigationEase, navigationIndex } from "@/content/navigation";
 
-export function RouteTransition() {
+export function RouteContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const previousPath = useRef(pathname);
-  const overlay = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (previousPath.current === pathname) return;
-
+    const from = previousPath.current;
     previousPath.current = pathname;
-    overlay.current?.setAttribute("data-active", "");
+    if (from === pathname || !content.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const fromIndex = navigationIndex(from);
+    const toIndex = navigationIndex(pathname);
+    const horizontalOffset = fromIndex >= 0 && toIndex >= 0 ? Math.sign(fromIndex - toIndex) * 10 : 0;
+    const animation = content.current.animate([
+      { opacity: 0.85, transform: `translate3d(${horizontalOffset}px, 5px, 0)` },
+      { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    ], {
+      duration: navigationDuration,
+      easing: `cubic-bezier(${navigationEase.join(", ")})`,
+    });
+    return () => animation.cancel();
   }, [pathname]);
 
   return (
-    <div key={pathname} ref={overlay} className="route-transition" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </div>
+    <main id="main-content" tabIndex={-1}>
+      <div className="route-content" ref={content}>{children}</div>
+    </main>
   );
 }
 
