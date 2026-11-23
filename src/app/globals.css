@@ -521,13 +521,17 @@ button, summary { cursor: pointer; }
 
 .profile-section-grid {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.3rem, 3.5vw, 2.85rem);
   margin-top: 1.4rem;
 }
 
-.education-layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+@media (width > 900px) {
+  .profile-section-art { position: relative; }
+  .profile-section-art .animated-artwork { position: absolute; inset: 0; }
+  .profile-section-art picture { display: block; height: 100%; }
+  .profile-section-art img { height: 100%; object-fit: cover; }
+}
 
 .profile-card, .skill-group {
   padding: clamp(1rem, 2.1vw, 1.5rem);
@@ -1063,6 +1067,7 @@ button, summary { cursor: pointer; }
 .contact-links svg { flex: none; color: var(--accent); }
 
 @media (max-width: 900px) {
+  .profile-section-grid { grid-template-columns: minmax(0, 1fr); }
   .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-grid > :last-child { grid-column: 1 / -1; }
   .profile-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1101,7 +1106,6 @@ button, summary { cursor: pointer; }
   .hero-art { aspect-ratio: 6 / 5; }
   .hero h1 { font-size: clamp(2.5rem, 8.3vw, 4rem); }
   .home-link-grid { grid-template-columns: minmax(0, 1fr); }
-  .profile-section-grid, .education-layout { grid-template-columns: minmax(0, 1fr); }
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .feature-summary, .careflow-service { grid-template-columns: minmax(0, 1fr); }
 }

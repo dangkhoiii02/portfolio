@@ -14,7 +14,7 @@ export default function Education() {
   return (
     <section id="education" className="shell inner-section" aria-labelledby="education-title">
       <h2 className="inner-title" id="education-title">Education<span>.</span></h2>
-      <div className="profile-section-grid education-layout">
+      <div className="profile-section-grid">
         <Reveal className="profile-card education-card">
           <p className="profile-meta">2022–2027 · Ho Chi Minh City</p>
           <h3>{profile.school}</h3>
@@ -37,8 +37,8 @@ export default function Education() {
           </ul>
         </Reveal>
 
-        <Reveal>
-          <AnimatedArtwork asset="education" label="education" width={900} height={600} />
+        <Reveal className="profile-section-art">
+          <AnimatedArtwork asset="education" label="education" width={840} height={840} />
         </Reveal>
       </div>
     </section>

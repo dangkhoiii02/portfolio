@@ -8,8 +8,8 @@ export default function Experience() {
     <section id="experience" className="shell inner-section" aria-labelledby="experience-title">
       <h2 className="inner-title" id="experience-title">Experience<span>.</span></h2>
       <div className="profile-section-grid">
-        <Reveal>
-          <AnimatedArtwork asset="experience" label="experience" width={900} height={600} />
+        <Reveal className="profile-section-art">
+          <AnimatedArtwork asset="experience" label="experience" width={840} height={840} />
         </Reveal>
 
         <Timeline>
