@@ -1,5 +1,6 @@
-import { AudioLines, Boxes, Database, Monitor, Network, ShieldCheck, Terminal } from "lucide-react";
+import { AudioLines, Boxes, Database, Monitor, Network, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/Motion";
+import ToolkitArtwork from "@/components/ToolkitArtwork";
 
 const categories = [
   { title: "Backend & APIs", icon: Boxes, skills: ["Java", "Spring Boot", "Node.js", "Fastify", "ASP.NET Core", "REST"] },
@@ -10,17 +11,12 @@ const categories = [
   { title: "Web, mobile & embedded", icon: Monitor, skills: ["TypeScript", "Next.js", "React", "Angular", "Flutter", "C++ / ESP32-S3"] },
 ];
 
-const orbit = ["Java", "Python", "PostgreSQL", "Spring Boot", "TypeScript", "RabbitMQ"];
-
 export default function Skills() {
   return (
     <section id="skills" className="shell inner-section skills" aria-labelledby="skills-title">
       <h2 className="inner-title" id="skills-title">Technical toolkit<span>.</span></h2>
       <Reveal>
-        <div className="skill-map" aria-hidden="true">
-          <div className="skill-core"><Terminal size={29} /></div>
-          {orbit.map((skill) => <span className="skill-node" key={skill}>{skill}</span>)}
-        </div>
+        <ToolkitArtwork />
       </Reveal>
       <div className="skills-grid">
         {categories.map(({ title, icon: Icon, skills }) => (

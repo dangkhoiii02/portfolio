@@ -477,67 +477,49 @@ button, summary { cursor: pointer; }
   border-top: 1px solid var(--line);
 }
 
-.skill-map {
+.toolkit-artwork {
   position: relative;
-  isolation: isolate;
-  display: grid;
-  min-height: clamp(18rem, 30vw, 24rem);
-  place-items: center;
   overflow: hidden;
   margin: 1.5rem 0 1.8rem;
   border: 1px solid var(--line);
-  border-radius: 1rem;
-  background-color: var(--tint);
-  background-image: radial-gradient(var(--line) 1px, transparent 1px);
-  background-size: 1rem 1rem;
+  border-radius: 1.05rem;
+  background: #172d25;
+  box-shadow: var(--card-shadow);
 }
 
-.skill-map::before {
+.toolkit-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 2;
+}
+
+.toolkit-animation-button {
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  margin: auto;
-  width: min(86%, 41rem);
-  height: 70%;
-  border: 1px dashed var(--line);
-  border-radius: 50%;
-  box-shadow: 0 0 0 .65rem var(--tint), 0 0 0 .72rem var(--line);
-  content: "";
+  right: clamp(.55rem, 1.6vw, 1rem);
+  bottom: clamp(.55rem, 1.6vw, 1rem);
+  display: inline-flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: .36rem;
+  padding: .4rem .72rem;
+  border: 1px solid #e5f3ea55;
+  border-radius: .6rem;
+  background: #10241fee;
+  color: #e8f5ec;
+  font-size: .875rem;
+  font-weight: 650;
+  transition: border-color .2s ease, background-color .2s ease;
 }
 
-.skill-core, .skill-node {
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: .55rem;
-  background: var(--surface);
+.toolkit-animation-button:hover {
+  border-color: #bde8cb;
+  background: #234438;
 }
 
-.skill-core {
-  width: 3.6rem;
-  height: 3.6rem;
-  border-color: var(--button);
-  background: var(--button);
-  color: var(--button-text);
-}
-
-.skill-node {
-  position: absolute;
-  padding: .45rem .75rem;
-  color: var(--accent);
-  font-size: clamp(.81rem, 1.45vw, .97rem);
-  font-weight: 750;
-  animation: float-node 5s ease-in-out infinite alternate;
-}
-
-.skill-node:nth-of-type(1) { top: 17%; left: 25%; }
-.skill-node:nth-of-type(2) { top: 16%; right: 27%; animation-delay: -.5s; }
-.skill-node:nth-of-type(3) { top: 43%; right: 15%; animation-delay: -1s; }
-.skill-node:nth-of-type(4) { bottom: 14%; right: 25%; animation-delay: -1.7s; }
-.skill-node:nth-of-type(5) { bottom: 15%; left: 22%; animation-delay: -2.3s; }
-.skill-node:nth-of-type(6) { top: 44%; left: 12%; animation-delay: -2.8s; }
-
-@keyframes float-node { to { transform: translateY(-.32rem); } }
+.toolkit-animation-button:focus-visible { outline-color: #bde8cb; }
 
 .skills-grid {
   display: grid;
@@ -1090,17 +1072,9 @@ button, summary { cursor: pointer; }
   .profile-facts { gap: .55rem; }
   .profile-fact { padding: .12rem 0 .5rem .5rem; }
   .profile-fact dd { font-size: clamp(1.8rem, 7.5vw, 2.8rem); }
-  .skill-node { padding: .35rem .5rem; }
-  .skill-node:nth-of-type(1) { left: 18%; }
-  .skill-node:nth-of-type(2) { right: 16%; }
-  .skill-node:nth-of-type(3) { right: 4%; }
-  .skill-node:nth-of-type(4) { right: 10%; }
-  .skill-node:nth-of-type(5) { left: 9%; }
-  .skill-node:nth-of-type(6) { left: 4%; }
-  .skill-core { width: 2.75rem; height: 2.75rem; }
-  .skill-core svg { width: 20px; }
   .article-row { flex-wrap: wrap; }
   .article-preview { display: none; }
+  .toolkit-animation-button span { display: none; }
 }
 
 @media (max-width: 400px) {
@@ -1116,6 +1090,7 @@ button, summary { cursor: pointer; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { transform: none !important; }
   .timeline-progress { transform: none !important; }
+  .toolkit-animation-button { display: none; }
 }
 
 @media print {
