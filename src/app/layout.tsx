@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { RouteContent } from "@/components/Motion";
+import { SakuraProvider } from "@/components/Sakura";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"], variable: "--font-inter" });
@@ -33,10 +34,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: restoreTheme }} />
       </head>
       <body>
-        <a className="skip-link" href="#main-content">Skip to content</a>
-        <Navbar />
-        <RouteContent>{children}</RouteContent>
-        <Footer />
+        <SakuraProvider>
+          <a className="skip-link" href="#main-content">Skip to content</a>
+          <Navbar />
+          <RouteContent>{children}</RouteContent>
+          <Footer />
+        </SakuraProvider>
       </body>
     </html>
   );

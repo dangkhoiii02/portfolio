@@ -27,11 +27,26 @@ html {
 
 body {
   min-width: 0;
+  isolation: isolate;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-inter), Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   transition: background-color .24s ease, color .24s ease;
+}
+
+.sakura-layer {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sakura-layer[data-active="true"] {
+  background: radial-gradient(ellipse at 92% 0%, light-dark(#efb4c327, #884b6c29), transparent 58%);
 }
 
 main {
@@ -143,6 +158,36 @@ button, summary { cursor: pointer; }
   justify-self: end;
   gap: .35rem;
 }
+
+.sakura-setting {
+  position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: .35rem;
+  padding-inline: .6rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  color: var(--muted);
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+.sakura-setting select {
+  width: 3.5rem;
+  min-height: 2.625rem;
+  appearance: none;
+  padding-right: .9rem;
+  border-radius: .4rem;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sakura-setting:focus-within { border-color: var(--accent); }
+.sakura-setting select:focus-visible { outline-offset: 1px; }
+.sakura-setting option { background: var(--surface); }
+.sakura-chevron { position: absolute; right: .55rem; pointer-events: none; }
 
 .icon-button {
   display: grid;
@@ -1077,7 +1122,7 @@ button, summary { cursor: pointer; }
 @media (max-width: 760px) {
   html { scroll-padding-top: 5.5rem; }
   .header-inner { min-height: 4.2rem; }
-  .desktop-nav, .header-email { display: none; }
+  .desktop-nav, .header-email, .header-actions .sakura-setting { display: none; }
   .mobile-nav { display: block; justify-self: start; }
   .mobile-nav summary { list-style: none; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
@@ -1096,6 +1141,16 @@ button, summary { cursor: pointer; }
   }
   .mobile-nav a { display: flex; min-height: 2.75rem; align-items: center; font-weight: 700; }
   .mobile-nav a::after { bottom: .35rem; }
+  .sakura-setting-mobile {
+    width: 100%;
+    margin-top: .3rem;
+    padding: .12rem 0 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .sakura-setting-mobile select { margin-left: auto; }
+  .sakura-setting-mobile .sakura-chevron { right: 0; }
 
   .hero {
     width: min(100% - 2.25rem, 34rem);
@@ -1139,13 +1194,14 @@ button, summary { cursor: pointer; }
   .reveal { transform: none !important; }
   .timeline-progress { transform: none !important; }
   .artwork-animation-button { display: none; }
+  .sakura-setting { display: none; }
 }
 
 @media print {
   @page { margin: 15mm; }
   :root, :root[data-theme] { color-scheme: light; }
   body { background: white; color: black; }
-  .site-header, .site-footer, .skip-link, .resume-actions { display: none !important; }
+  .site-header, .site-footer, .skip-link, .resume-actions, .sakura-layer { display: none !important; }
   main { min-height: auto; }
   .resume-page { width: 100%; max-width: none; padding: 0; }
   .resume-sheet { padding: 0; border: 0; background: white; }
