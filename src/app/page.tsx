@@ -1,4 +1,4 @@
-import { AudioLines, BriefcaseBusiness, Database, Layers3, ListChecks, Network, Waypoints } from "lucide-react";
+import { AudioLines, BriefcaseBusiness, ClipboardCheck, Database, Network, Server, Waypoints } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
@@ -9,28 +9,33 @@ import { projectArtwork } from "@/content/project-artwork";
 
 const skills = [
   {
+    id: "backend",
     title: "Backend engineering",
-    icon: Layers3,
+    icon: Server,
     detail: "Build REST APIs and backend workflows for outpatient queues, identity and access, and course enrollment.",
   },
   {
+    id: "distributed",
     title: "Distributed systems",
     icon: Waypoints,
     detail: "Design event-driven workflows with retryable delivery, idempotent event handling, and real-time updates.",
   },
   {
+    id: "data",
     title: "Data modeling & consistency",
     icon: Database,
     detail: "Model relational and graph data. Use transactions and locking to keep concurrent enrollment consistent.",
   },
   {
+    id: "ai",
     title: "Applied AI & evaluation",
     icon: AudioLines,
     detail: "Prepare Vietnamese speech datasets, fine-tune speech recognition models, and evaluate transcription with word error rate.",
   },
   {
+    id: "quality",
     title: "Testing & collaboration",
-    icon: ListChecks,
+    icon: ClipboardCheck,
     detail: "Test features and edge cases with teammates, fix issues based on feedback, and document API and event contracts.",
   },
 ];
@@ -122,10 +127,13 @@ function HomeSkills() {
     <section id="skills" className="shell inner-section home-credentials" aria-labelledby="home-skills-title">
       <h2 id="home-skills-title" className="inner-title">Skills<span>.</span></h2>
       <Reveal>
-        <dl className="home-skills-list">
-          {skills.map(({ title, icon: Icon, detail }) => (
-            <div key={title}>
-              <dt><Icon className="home-entry-icon" size={20} aria-hidden="true" /> {title}</dt>
+        <dl className="home-skills-grid">
+          {skills.map(({ id, title, icon: Icon, detail }) => (
+            <div key={id} className="home-skill-card" data-skill={id}>
+              <dt>
+                <span className="home-skill-icon" aria-hidden="true"><Icon size={25} strokeWidth={1.6} /></span>
+                <span>{title}</span>
+              </dt>
               <dd>{detail}</dd>
             </div>
           ))}

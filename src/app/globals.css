@@ -358,23 +358,23 @@ button, summary { cursor: pointer; }
 .inner-title span, .footer-intro h2 span { color: var(--accent); }
 
 .home-layout {
-  --home-gutter: max(clamp(1.125rem, 4.5vw, 4.5rem), (100% - 86rem) / 2);
+  --home-gutter: clamp(1.125rem, 4.5vw, 4.5rem);
+  --home-rail-edge: clamp(.75rem, 1.5vw, 1.5rem);
+  --home-rail-width: 6.4rem;
+  --home-rail-space: calc(var(--home-rail-width) + var(--home-rail-edge) + clamp(1.1rem, 2vw, 1.65rem));
   display: grid;
-  width: calc(100% - 2 * var(--home-gutter));
-  grid-template-columns: minmax(0, 1fr) 6.4rem;
-  gap: clamp(1rem, 2.3vw, 2rem);
-  margin-inline: auto;
+  grid-template-columns: minmax(var(--home-gutter), 1fr) minmax(0, 75rem) minmax(var(--home-rail-space), 1fr);
 }
 
-.home-content { min-width: 0; }
+.home-content { grid-column: 2; min-width: 0; }
 .home-content > .shell { width: 100%; }
 
 .home-section-nav {
   position: fixed;
   z-index: 3;
   top: 50%;
-  inset-inline-end: var(--home-gutter);
-  width: 6.4rem;
+  inset-inline-end: var(--home-rail-edge);
+  width: var(--home-rail-width);
   translate: 0 -50%;
 }
 
@@ -389,8 +389,8 @@ button, summary { cursor: pointer; }
   min-height: 1.85rem;
   align-items: center;
   gap: .45rem;
-  padding-inline: .35rem;
-  border-radius: .25rem;
+  padding-inline: .5rem;
+  border-radius: .5rem;
   color: var(--muted);
   font-size: .75rem;
   font-weight: 620;
@@ -408,7 +408,10 @@ button, summary { cursor: pointer; }
   content: "";
 }
 
-.home-section-nav a[aria-current] { color: var(--accent); }
+.home-section-nav a[aria-current] {
+  background: color-mix(in srgb, var(--accent-wash) 82%, var(--surface));
+  color: var(--accent);
+}
 .home-section-nav a[aria-current]::before { opacity: 1; }
 .home-section-nav a:hover, .home-section-nav a:focus-visible { color: var(--ink); }
 
@@ -493,44 +496,91 @@ button, summary { cursor: pointer; }
 .home-experience-card .timeline-contributions { gap: .48rem; }
 .home-profile-link { margin: .65rem 0 0 clamp(3.1rem, 6vw, 3.8rem); }
 
-.home-skills-list {
+.home-skills-grid {
   display: grid;
-  border-block: 1px solid var(--line);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.85rem, 2vw, 1.3rem);
 }
 
-.home-skills-list > div {
+.home-skill-card {
+  --skill-tone: var(--accent);
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(14rem, .85fr) minmax(0, 1.6fr);
-  align-items: center;
-  gap: clamp(.75rem, 3vw, 2.2rem);
-  padding: clamp(.9rem, 2vw, 1.4rem) clamp(.6rem, 1.6vw, 1.1rem);
-  background: linear-gradient(100deg, var(--surface), transparent 74%);
+  min-width: 0;
+  overflow: hidden;
+  align-content: start;
+  gap: .85rem;
+  padding: clamp(1.1rem, 2.6vw, 1.8rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--skill-tone) 12%, transparent), transparent 65%),
+    var(--surface);
+  box-shadow: var(--card-shadow);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.home-skills-list > div + div { border-top: 1px solid var(--line); }
+.home-skill-card[data-skill="backend"] { grid-column: 1 / -1; }
+.home-skill-card[data-skill="distributed"] { --skill-tone: light-dark(#236777, #9bd9e3); }
+.home-skill-card[data-skill="data"] { --skill-tone: light-dark(#427144, #b8d796); }
+.home-skill-card[data-skill="ai"] { --skill-tone: light-dark(#654d92, #cfb8f1); }
+.home-skill-card[data-skill="quality"] { --skill-tone: light-dark(#8a592d, #e9c38f); }
 
-.home-skills-list dt {
+.home-skill-card dt {
   display: flex;
   align-items: center;
-  gap: .8rem;
+  gap: .9rem;
+  color: var(--ink);
+  font-size: clamp(1.03rem, 2vw, 1.25rem);
   font-weight: 720;
-  line-height: 1.35;
+  letter-spacing: -.025em;
+  line-height: 1.25;
 }
 
-.home-entry-icon {
-  box-sizing: content-box;
+.home-skill-card[data-skill="backend"] dt { font-size: clamp(1.2rem, 2.4vw, 1.55rem); }
+
+.home-skill-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
   flex: none;
-  padding: .45rem;
-  border: 1px solid var(--line);
-  border-radius: .6rem;
-  background: var(--accent-wash);
-  color: var(--accent);
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--skill-tone) 46%, var(--line));
+  border-radius: .8rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--skill-tone) 20%, var(--surface)), var(--surface));
+  color: var(--skill-tone);
+  transition: transform .24s ease;
 }
 
-.home-skills-list dd { color: var(--muted); line-height: 1.6; }
+.home-skill-card dd { max-width: 62ch; color: var(--muted); line-height: 1.65; }
+
+@media (min-width: 721px) {
+  .home-skill-card[data-skill="backend"]::after {
+    position: absolute;
+    inset: 1rem 1rem 1rem auto;
+    width: 34%;
+    background: radial-gradient(circle, var(--skill-tone) 1px, transparent 1.3px) 0 0 / 13px 13px;
+    mask-image: linear-gradient(100deg, transparent, #000 82%);
+    opacity: .22;
+    pointer-events: none;
+    content: "";
+  }
+
+  .home-skill-card[data-skill="backend"] dd { max-width: min(62ch, 65%); }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .home-skill-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--skill-tone) 58%, var(--line));
+    box-shadow: var(--raised-shadow);
+  }
+
+  .home-skill-card:hover .home-skill-icon { transform: translateY(-2px) rotate(-5deg); }
+}
 
 @media (max-width: 1079px) {
-  .home-layout { display: block; }
+  .home-layout { display: block; width: calc(100% - 2 * var(--home-gutter)); margin-inline: auto; }
   .home-content > section { scroll-margin-top: 3rem; }
 
   .home-section-nav {
@@ -545,6 +595,10 @@ button, summary { cursor: pointer; }
 
   .home-section-nav ul { display: flex; justify-content: flex-end; }
   .home-section-nav a { min-height: 2.75rem; gap: .32rem; padding-inline: clamp(.33rem, 1.5vw, .75rem); }
+}
+
+@media (max-width: 720px) {
+  .home-skills-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 .page-heading {
@@ -1291,7 +1345,6 @@ button, summary { cursor: pointer; }
   .home-experience-card .home-experience-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .55rem; text-align: left; }
   .home-experience-card .home-experience-date { margin-bottom: 0; }
   .home-profile-link { margin-inline-start: 2.55rem; }
-  .home-skills-list > div { grid-template-columns: minmax(0, 1fr); gap: .55rem; }
   .about-grid, .footer-inner, .project-grid, .articles-grid { grid-template-columns: minmax(0, 1fr); }
   .about-grid > :last-child { grid-column: auto; }
   .identity-frame { grid-row: 1; }
