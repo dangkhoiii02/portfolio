@@ -1,95 +1,146 @@
-import { BriefcaseBusiness, Network } from "lucide-react";
+import { AudioLines, BriefcaseBusiness, Database, Layers3, ListChecks, Network, Waypoints } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import HomeSectionNav from "@/components/HomeSectionNav";
 import { Reveal } from "@/components/Motion";
-import { skillCategories } from "@/components/Skills";
-import { internship, studentResearch } from "@/content/profile";
+import { internship, profile, studentResearch } from "@/content/profile";
 import { projectArtwork } from "@/content/project-artwork";
 
-const homeSkills = skillCategories.filter(({ id }) => ["backend", "distributed", "data", "ai"].includes(id));
+const skills = [
+  {
+    title: "Backend engineering",
+    icon: Layers3,
+    detail: "Build REST APIs and backend workflows for outpatient queues, identity and access, and course enrollment.",
+  },
+  {
+    title: "Distributed systems",
+    icon: Waypoints,
+    detail: "Design event-driven workflows with retryable delivery, idempotent event handling, and real-time updates.",
+  },
+  {
+    title: "Data modeling & consistency",
+    icon: Database,
+    detail: "Model relational and graph data. Use transactions and locking to keep concurrent enrollment consistent.",
+  },
+  {
+    title: "Applied AI & evaluation",
+    icon: AudioLines,
+    detail: "Prepare Vietnamese speech datasets, fine-tune speech recognition models, and evaluate transcription with word error rate.",
+  },
+  {
+    title: "Testing & collaboration",
+    icon: ListChecks,
+    detail: "Test features and edge cases with teammates, fix issues based on feedback, and document API and event contracts.",
+  },
+];
+
+function CareFlowFeature() {
+  return (
+    <section id="projects" className="shell inner-section" aria-labelledby="featured-careflow-title">
+      <Reveal>
+        <div className="feature-card feature-summary home-feature">
+          <div className="feature-copy">
+            <p className="eyebrow feature-label">Featured project</p>
+            <h2 id="featured-careflow-title">CareFlow</h2>
+            <p className="feature-subtitle">Outpatient management microservices</p>
+            <p>
+              I led core infrastructure development in a team of three. CareFlow brings together
+              real-time patient queues and a Voice Prescription service that turns Vietnamese
+              dictation into drafts for clinicians to review.
+            </p>
+            <ul className="tags" aria-label="CareFlow technologies">
+              {["Spring Boot", "RabbitMQ", "PostgreSQL", "Qwen3-ASR"].map(tag => <li key={tag}>{tag}</li>)}
+            </ul>
+            <div className="feature-links">
+              <Link className="button button-primary" href="/projects#careflow">Explore CareFlow</Link>
+              <Link className="text-link" href="/projects">All projects</Link>
+            </div>
+          </div>
+          <div className="careflow-cover">
+            <Image
+              src={projectArtwork.careflow.src}
+              alt={projectArtwork.careflow.alt}
+              fill
+              sizes="(max-width: 760px) calc(100vw - 70px), (max-width: 1079px) 43vw, (max-width: 1500px) 37vw, 550px"
+            />
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function HomeExperience() {
+  return (
+    <section id="experience" className="shell inner-section" aria-labelledby="home-experience-title">
+      <h2 id="home-experience-title" className="inner-title">Experience<span>.</span></h2>
+      <Reveal>
+        <ol className="profile-card home-experience-list">
+          <li>
+            <div className="home-experience-meta">
+              <BriefcaseBusiness className="home-entry-icon" size={20} aria-hidden="true" />
+              <div>
+                <p className="profile-meta">{internship.period}</p>
+                <p className="home-organization">{internship.company}</p>
+                <p className="profile-meta">{profile.location}</p>
+              </div>
+            </div>
+            <div>
+              <h3>{internship.role}</h3>
+              <ul className="timeline-contributions">
+                {internship.contributions.map(contribution => <li key={contribution}>{contribution}</li>)}
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div className="home-experience-meta">
+              <Network className="home-entry-icon" size={20} aria-hidden="true" />
+              <div>
+                <p className="profile-meta">{studentResearch.period}</p>
+                <p className="home-organization">{studentResearch.organization}</p>
+              </div>
+            </div>
+            <div>
+              <h3>{studentResearch.title}</h3>
+              <p>{studentResearch.contribution}</p>
+            </div>
+          </li>
+        </ol>
+      </Reveal>
+      <Link className="text-link home-profile-link" href="/about#experience">More about my experience</Link>
+    </section>
+  );
+}
+
+function HomeSkills() {
+  return (
+    <section id="skills" className="shell inner-section" aria-labelledby="home-skills-title">
+      <h2 id="home-skills-title" className="inner-title">Skills<span>.</span></h2>
+      <Reveal>
+        <dl className="profile-card home-skills-list">
+          {skills.map(({ title, icon: Icon, detail }) => (
+            <div key={title}>
+              <dt><Icon className="home-entry-icon" size={20} aria-hidden="true" /> {title}</dt>
+              <dd>{detail}</dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-
-      <section id="projects" className="shell inner-section" aria-labelledby="featured-careflow-title">
-        <Reveal>
-          <div className="feature-card feature-summary home-feature">
-            <div className="feature-copy">
-              <p className="eyebrow feature-label">Featured project</p>
-              <h2 id="featured-careflow-title">CareFlow</h2>
-              <p className="feature-subtitle">Outpatient management microservices</p>
-              <p>
-                I led core infrastructure development in a team of three. CareFlow brings together
-                real-time patient queues and a Voice Prescription service that turns Vietnamese
-                dictation into drafts for clinicians to review.
-              </p>
-              <ul className="tags" aria-label="CareFlow technologies">
-                {["Spring Boot", "RabbitMQ", "PostgreSQL", "Qwen3-ASR"].map(tag => <li key={tag}>{tag}</li>)}
-              </ul>
-              <div className="feature-links">
-                <Link className="button button-primary" href="/projects#careflow">Explore CareFlow</Link>
-                <Link className="text-link" href="/projects">All projects</Link>
-              </div>
-            </div>
-            <div className="careflow-cover">
-              <Image
-                src={projectArtwork.careflow.src}
-                alt={projectArtwork.careflow.alt}
-                fill
-                sizes="(max-width: 760px) calc(100vw - 70px), (max-width: 1320px) 43vw, 550px"
-              />
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <div className="shell inner-section">
-        <Reveal className="home-profile-grid">
-          <section id="experience" className="home-profile-section" aria-labelledby="home-experience-title">
-            <h2 id="home-experience-title" className="inner-title">Experience<span>.</span></h2>
-            <ol className="profile-card home-experience-list">
-              <li>
-                <BriefcaseBusiness className="home-experience-icon" size={20} aria-hidden="true" />
-                <div>
-                  <p className="profile-meta">{internship.period} · {internship.company}</p>
-                  <h3>{internship.role}</h3>
-                  <p>Built infrastructure monitoring and incident alerts and worked on Vietnamese delivery-address search.</p>
-                </div>
-              </li>
-              <li>
-                <Network className="home-experience-icon" size={20} aria-hidden="true" />
-                <div>
-                  <p className="profile-meta">{studentResearch.period} · {studentResearch.organization}</p>
-                  <h3>{studentResearch.title}</h3>
-                  <p>{studentResearch.contribution}</p>
-                </div>
-              </li>
-            </ol>
-            <Link className="text-link home-profile-link" href="/about#experience">More about my experience</Link>
-          </section>
-
-          <section id="skills" className="home-profile-section" aria-labelledby="home-skills-title">
-            <h2 id="home-skills-title" className="inner-title">Technical toolkit<span>.</span></h2>
-            <div className="skill-group home-skill-grid">
-              {homeSkills.map(({ id, title, icon: Icon, skills }) => (
-                <div key={id}>
-                  <div className="skill-heading">
-                    <Icon size={20} aria-hidden="true" />
-                    <h3>{title}</h3>
-                  </div>
-                  <ul className="skill-tags">
-                    {skills.slice(0, 4).map(skill => <li key={skill}>{skill}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <Link className="text-link home-profile-link" href="/about#skills">View full toolkit</Link>
-          </section>
-        </Reveal>
+    <div className="home-layout">
+      <HomeSectionNav />
+      <div className="home-content">
+        <Hero />
+        <CareFlowFeature />
+        <HomeExperience />
+        <HomeSkills />
       </div>
-    </>
+    </div>
   );
 }

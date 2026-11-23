@@ -357,52 +357,131 @@ button, summary { cursor: pointer; }
 
 .inner-title span, .footer-intro h2 span { color: var(--accent); }
 
-.home-profile-grid {
+.home-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2.5rem);
+  width: min(100% - clamp(2.25rem, 9vw, 9rem), 86rem);
+  grid-template-columns: minmax(0, 1fr) 8.4rem;
+  grid-template-areas: "content sections";
+  gap: clamp(1rem, 2.3vw, 2rem);
+  margin-inline: auto;
 }
 
-.home-profile-section {
-  display: flex;
+.home-content { grid-area: content; min-width: 0; }
+.home-content > .shell { width: 100%; }
+
+.home-section-nav {
+  position: sticky;
+  z-index: 3;
+  top: 6.75rem;
+  grid-area: sections;
   min-width: 0;
-  flex-direction: column;
+  align-self: start;
+  margin-top: clamp(3.25rem, 5.7vw, 5rem);
+  padding: .6rem;
+  border: 1px solid var(--line);
+  border-radius: .85rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--paper));
+  box-shadow: var(--card-shadow);
 }
 
-.home-profile-section > .profile-card,
-.home-profile-section > .skill-group { flex: 1; }
+.home-section-nav > p {
+  padding: .23rem .45rem .35rem;
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 650;
+}
 
-.home-experience-list { display: grid; align-content: start; }
+.home-section-nav ul { display: grid; }
 
-.home-experience-list li {
+.home-section-nav a {
+  position: relative;
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: .3rem .45rem .3rem .75rem;
+  border-radius: .42rem;
+  color: var(--muted);
+  font-size: .875rem;
+  font-weight: 650;
+  transition: color .18s ease, background-color .18s ease;
+}
+
+.home-section-nav a:hover { color: var(--ink); background: var(--tint); }
+
+.home-section-nav a[aria-current] {
+  background: var(--accent-wash);
+  color: var(--accent);
+}
+
+.home-section-nav a[aria-current]::before {
+  position: absolute;
+  inset: .7rem auto .7rem .28rem;
+  width: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.home-experience-list > li,
+.home-skills-list > div {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: .8rem;
+  grid-template-columns: minmax(13rem, .8fr) minmax(0, 2fr);
+  gap: clamp(.8rem, 3vw, 2.4rem);
+  padding: clamp(.9rem, 2vw, 1.35rem) 0;
 }
 
-.home-experience-list li + li {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
+.home-experience-list > :first-child,
+.home-skills-list > :first-child { padding-top: 0; }
+
+.home-experience-list > :last-child,
+.home-skills-list > :last-child { padding-bottom: 0; }
+
+.home-experience-list > li + li,
+.home-skills-list > div + div { border-top: 1px solid var(--line); }
+
+.home-experience-meta, .home-skills-list dt {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
 }
 
-.home-experience-icon {
+.home-entry-icon {
   box-sizing: content-box;
-  padding: .4rem;
+  flex: none;
+  padding: .45rem;
   border-radius: .55rem;
   background: var(--tint);
   color: var(--accent);
 }
 
-.home-skill-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: start;
-  gap: 1.15rem clamp(.65rem, 2vw, 1.5rem);
-}
+.home-experience-list h3 { margin-top: 0; }
+.home-experience-list .home-organization { color: var(--ink); font-weight: 700; }
+.home-experience-list .timeline-contributions { margin-top: .55rem; }
 
-.home-skill-grid .skill-heading { margin-bottom: .48rem; }
-.home-profile-link { align-self: start; margin-top: .5rem; }
+.home-skills-list > div { align-items: center; }
+.home-skills-list dt { align-items: center; font-weight: 720; line-height: 1.35; }
+.home-skills-list dd { color: var(--muted); line-height: 1.6; }
+.home-profile-link { margin-top: .5rem; }
+
+@media (max-width: 1079px) {
+  .home-layout { display: block; }
+  .home-content > section { scroll-margin-top: 3rem; }
+
+  .home-section-nav {
+    top: calc(4.8rem + 1px);
+    margin: 0;
+    padding: .22rem 0;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    background: var(--paper);
+    box-shadow: none;
+  }
+
+  .home-section-nav > p { display: none; }
+  .home-section-nav ul { display: flex; justify-content: flex-end; }
+  .home-section-nav a { justify-content: center; padding-inline: clamp(.4rem, 2vw, .85rem); font-size: .8125rem; }
+  .home-section-nav a[aria-current]::before { inset: auto .75rem .25rem; width: auto; height: 2px; }
+}
 
 .page-heading {
   width: min(100% - 2.25rem, 66rem);
@@ -1135,12 +1214,13 @@ button, summary { cursor: pointer; }
   }
   .hero-art { aspect-ratio: 6 / 5; }
   .hero h1 { font-size: clamp(2.5rem, 8.3vw, 4rem); }
-  .home-profile-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-section-nav { top: calc(4.2rem + 1px); }
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .feature-summary, .careflow-service { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 600px) {
+  .home-experience-list > li, .home-skills-list > div { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
   .about-grid, .footer-inner, .project-grid, .articles-grid { grid-template-columns: minmax(0, 1fr); }
   .about-grid > :last-child { grid-column: auto; }
   .identity-frame { grid-row: 1; }
@@ -1160,7 +1240,7 @@ button, summary { cursor: pointer; }
   .home-avatar { width: 2.75rem; height: 2.75rem; }
   .hero h1 { font-size: clamp(2rem, 10.65vw, 2.7rem); }
   .page-heading h1 { font-size: clamp(2.65rem, 11.4vw, 3.1rem); }
-  .skills-grid, .home-skill-grid { grid-template-columns: minmax(0, 1fr); }
+  .skills-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1175,7 +1255,7 @@ button, summary { cursor: pointer; }
   @page { margin: 15mm; }
   :root, :root[data-theme] { color-scheme: light; }
   body { background: white; color: black; }
-  .site-header, .site-footer, .skip-link, .resume-actions, .glass-layer { display: none !important; }
+  .site-header, .site-footer, .skip-link, .resume-actions, .glass-layer, .home-section-nav { display: none !important; }
   main { min-height: auto; }
   .resume-page { width: 100%; max-width: none; padding: 0; }
   .resume-sheet { padding: 0; border: 0; background: white; }

@@ -2,7 +2,7 @@ import { AudioLines, Boxes, Database, Monitor, Network, ShieldCheck } from "luci
 import { Reveal } from "@/components/Motion";
 import AnimatedArtwork from "@/components/AnimatedArtwork";
 
-export const skillCategories = [
+const skillCategories = [
   { id: "backend", title: "Backend & APIs", icon: Boxes, skills: ["Java", "Spring Boot", "Node.js", "Fastify", "ASP.NET Core", "REST"] },
   { id: "distributed", title: "Distributed systems", icon: Network, skills: ["RabbitMQ", "WebSocket / STOMP", "Transactional Outbox", "Docker Compose"] },
   { id: "identity", title: "Identity & access", icon: ShieldCheck, skills: ["Spring Security", "JWT", "WebAuthn", "DPoP", "Keycloak"] },
