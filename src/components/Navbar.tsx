@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
-import { SakuraSpeed } from "@/components/Sakura";
+import { GlassSpeed } from "@/components/GlassBackground";
 import { navigation, navigationDuration, navigationEase, navigationIndex } from "@/content/navigation";
 import { profile } from "@/content/profile";
 
@@ -83,7 +83,7 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-            <SakuraSpeed mobile />
+            <GlassSpeed mobile />
           </nav>
         </details>
 
@@ -98,7 +98,7 @@ export default function Navbar() {
           <a className="icon-button header-email" href={`mailto:${profile.email}`} aria-label="Email Khôi">
             <Mail size={19} />
           </a>
-          <SakuraSpeed />
+          <GlassSpeed />
           <button className="icon-button theme-toggle" type="button" aria-label="Toggle color theme" onClick={toggleTheme}>
             <Moon className="moon-icon" size={19} />
             <Sun className="sun-icon" size={20} />
