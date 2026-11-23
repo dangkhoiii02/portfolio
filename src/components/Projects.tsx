@@ -125,7 +125,7 @@ export default function Projects() {
               <p className="eyebrow feature-label">Graduation internship project</p>
               <h2 id="careflow-title">CareFlow</h2>
               <p className="feature-subtitle">Outpatient management microservices</p>
-              <p>I led core infrastructure development in a three-person team.</p>
+              <p>I worked on CareFlow’s core infrastructure as a backend developer on a three-person team.</p>
               <ul className="service-grid" aria-label="Core services">
                 {coreServices.map(({ name, icon: Icon }) => (
                   <li key={name}><Icon size={16} aria-hidden="true" /> {name}</li>

@@ -50,9 +50,9 @@ function CareFlowFeature() {
             <h2 id="featured-careflow-title">CareFlow</h2>
             <p className="feature-subtitle">Outpatient management platform designed for public hospitals</p>
             <p>
-              I led core infrastructure development in a three-person team, including the API gateway,
-              authentication, and real-time patient queues. I also built Voice Prescription, which turns
-              Vietnamese dictation into draft prescriptions for clinicians to review.
+              As a backend developer on a three-person team, I worked on the core infrastructure,
+              including the API gateway, authentication, and real-time patient queues. I also built
+              Voice Prescription, which turns Vietnamese dictation into draft prescriptions for clinicians to review.
             </p>
             <ul className="tags" aria-label="CareFlow technologies">
               {["Spring Boot", "RabbitMQ", "PostgreSQL", "Qwen3-ASR"].map(tag => <li key={tag}>{tag}</li>)}
