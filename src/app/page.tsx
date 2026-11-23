@@ -46,13 +46,13 @@ function CareFlowFeature() {
       <Reveal>
         <div className="feature-card feature-summary home-feature">
           <div className="feature-copy">
-            <p className="eyebrow feature-label">Featured project</p>
+            <p className="eyebrow feature-label">Graduation project</p>
             <h2 id="featured-careflow-title">CareFlow</h2>
-            <p className="feature-subtitle">Outpatient management microservices</p>
+            <p className="feature-subtitle">Outpatient management platform designed for public hospitals</p>
             <p>
-              I led core infrastructure development in a team of three. CareFlow brings together
-              real-time patient queues and a Voice Prescription service that turns Vietnamese
-              dictation into drafts for clinicians to review.
+              I led core infrastructure development in a three-person team, including the API gateway,
+              authentication, and real-time patient queues. I also built Voice Prescription, which turns
+              Vietnamese dictation into draft prescriptions for clinicians to review.
             </p>
             <ul className="tags" aria-label="CareFlow technologies">
               {["Spring Boot", "RabbitMQ", "PostgreSQL", "Qwen3-ASR"].map(tag => <li key={tag}>{tag}</li>)}
