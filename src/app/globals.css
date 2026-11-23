@@ -204,15 +204,7 @@ button, summary { cursor: pointer; }
   object-position: center 40%;
 }
 
-.hero-caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 clamp(.55rem, 1.5vw, 1rem);
-  padding: .22rem .42rem 0;
-}
-
-.hero-caption a, .hero-details p, .hero-details a {
+.hero-details p, .hero-details a {
   display: inline-flex;
   align-items: center;
   gap: .38rem;
@@ -220,9 +212,9 @@ button, summary { cursor: pointer; }
   font-size: .875rem;
 }
 
-.hero-caption a, .hero-details a { min-height: 2.75rem; }
-.hero-caption a:hover, .hero-details a:hover { color: var(--accent); }
-.hero-caption svg, .hero-details svg { flex: none; color: var(--accent); }
+.hero-details a { min-height: 2.75rem; }
+.hero-details a:hover { color: var(--accent); }
+.hero-details svg { flex: none; color: var(--accent); }
 
 .eyebrow {
   color: var(--accent);
@@ -231,8 +223,7 @@ button, summary { cursor: pointer; }
   letter-spacing: .015em;
 }
 
-
-.hero-name {
+.hero-eyebrow {
   display: flex;
   align-items: center;
   gap: .7rem;
@@ -241,7 +232,8 @@ button, summary { cursor: pointer; }
   text-transform: uppercase;
 }
 
-.hero-name::before {
+.hero-eyebrow::before {
+  flex: none;
   width: 1.75rem;
   height: 1px;
   background: currentColor;
@@ -256,13 +248,18 @@ button, summary { cursor: pointer; }
 
 .hero h1 { font-size: clamp(2.45rem, 4.5vw, 4.5rem); }
 
-.hero h1 span, .hero h1 em { display: block; }
-
-.hero h1 em, .page-heading h1 em {
+.hero-focus, .page-heading h1 em {
   color: var(--accent);
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   letter-spacing: -.075em;
+}
+
+.hero-focus {
+  margin-top: .4rem;
+  font-size: clamp(1.55rem, 3vw, 2.9rem);
+  font-style: italic;
+  line-height: 1.15;
 }
 
 .hero-intro {

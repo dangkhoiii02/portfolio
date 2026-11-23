@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import { Reveal } from "@/components/Motion";
 
 const highlights = [
-  { title: "CareFlow", text: "Outpatient microservices with Vietnamese voice drafting.", href: "/projects#careflow", icon: Layers3 },
+  { title: "CareFlow", text: "Outpatient microservices with real-time patient queues and Vietnamese voice drafting.", href: "/projects#careflow", icon: Layers3 },
   { title: "Kiro Chat", text: "Real-time messaging for web and Android.", href: "/projects#kiro-chat", icon: MessageCircle },
   { title: "Technical articles", text: "Implementation details and trade-offs from my projects.", href: "/articles", icon: BookOpenText },
 ];
