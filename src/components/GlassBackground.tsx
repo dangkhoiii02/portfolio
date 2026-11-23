@@ -1,22 +1,8 @@
 "use client";
 
-import { ChevronDown, Gem } from "lucide-react";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-const speedOptions = [
-  { value: 0.25, label: "0.25×" },
-  { value: 0.5, label: "0.5×" },
-  { value: 1, label: "1×" },
-  { value: 0, label: "Off" },
-] as const;
-
-type Speed = (typeof speedOptions)[number]["value"];
-const defaultSpeed: Speed = 0.25;
-
-const GlassSettings = createContext<{ speed: Speed; setSpeed: (value: Speed) => void }>({
-  speed: defaultSpeed,
-  setSpeed: () => {},
-});
+const playbackSpeed = 0.5;
 
 type Shard = {
   x: number;
@@ -156,9 +142,8 @@ function createGlintSprite(dark: boolean) {
   return sprite;
 }
 
-function GlassCanvas({ speed }: { speed: Speed }) {
+export function GlassBackground() {
   const canvas = useRef<HTMLCanvasElement>(null);
-  const changeSpeed = useRef<((value: Speed) => void) | null>(null);
 
   useEffect(() => {
     const layer = canvas.current;
@@ -182,7 +167,6 @@ function GlassCanvas({ speed }: { speed: Speed }) {
     let height = 0;
     let shards: Shard[] = [];
     let sprites = getSprites();
-    let playback: Speed = defaultSpeed;
     let frame = 0;
     let previousTime = 0;
 
@@ -190,7 +174,6 @@ function GlassCanvas({ speed }: { speed: Speed }) {
       if (!context) return;
 
       context.clearRect(0, 0, width, height);
-      if (playback === 0) return;
 
       for (const shard of shards) {
         shard.phase += elapsed * (0.8 + shard.depth * 0.7);
@@ -230,7 +213,7 @@ function GlassCanvas({ speed }: { speed: Speed }) {
     function tick(timestamp: number) {
       const elapsed = previousTime ? Math.min((timestamp - previousTime) / 1000, 0.05) : 0;
       previousTime = timestamp;
-      paint(elapsed * playback);
+      paint(elapsed * playbackSpeed);
       frame = requestAnimationFrame(tick);
     }
 
@@ -238,7 +221,7 @@ function GlassCanvas({ speed }: { speed: Speed }) {
       cancelAnimationFrame(frame);
       previousTime = 0;
       paint();
-      if (playback > 0 && !reduceMotion.matches && !document.hidden) {
+      if (!reduceMotion.matches && !document.hidden) {
         frame = requestAnimationFrame(tick);
       }
     }
@@ -262,10 +245,6 @@ function GlassCanvas({ speed }: { speed: Speed }) {
       refresh();
     }
 
-    changeSpeed.current = (next) => {
-      playback = next;
-      refresh();
-    };
     const themeObserver = new MutationObserver(updateTheme);
     themeObserver.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
     window.addEventListener("resize", resize);
@@ -276,7 +255,6 @@ function GlassCanvas({ speed }: { speed: Speed }) {
 
     return () => {
       cancelAnimationFrame(frame);
-      changeSpeed.current = null;
       themeObserver.disconnect();
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", refresh);
@@ -285,44 +263,5 @@ function GlassCanvas({ speed }: { speed: Speed }) {
     };
   }, []);
 
-  useEffect(() => {
-    changeSpeed.current?.(speed);
-  }, [speed]);
-
-  return <canvas ref={canvas} className="glass-layer" data-active={speed > 0} aria-hidden="true" />;
-}
-
-export function GlassBackgroundProvider({ children }: { children: React.ReactNode }) {
-  const [speed, setSpeed] = useState<Speed>(defaultSpeed);
-
-  return (
-    <GlassSettings.Provider value={{ speed, setSpeed }}>
-      <GlassCanvas speed={speed} />
-      {children}
-    </GlassSettings.Provider>
-  );
-}
-
-export function GlassSpeed({ mobile = false }: { mobile?: boolean }) {
-  const { speed, setSpeed } = useContext(GlassSettings);
-
-  return (
-    <label className={`glass-setting${mobile ? " glass-setting-mobile" : ""}`}>
-      <Gem size={15} aria-hidden="true" />
-      {mobile && <span>Background speed</span>}
-      <select
-        value={speed}
-        aria-label="Background animation speed"
-        onChange={(event) => {
-          const next = speedOptions.find(option => String(option.value) === event.currentTarget.value);
-          if (next) setSpeed(next.value);
-        }}
-      >
-        {speedOptions.map(option => (
-          <option key={option.value} value={option.value}>{option.label}</option>
-        ))}
-      </select>
-      <ChevronDown size={13} className="glass-chevron" aria-hidden="true" />
-    </label>
-  );
+  return <canvas ref={canvas} className="glass-layer" aria-hidden="true" />;
 }

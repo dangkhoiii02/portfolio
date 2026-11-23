@@ -44,9 +44,6 @@ body {
   height: 100%;
   color: var(--paper);
   pointer-events: none;
-}
-
-.glass-layer[data-active="true"] {
   background:
     radial-gradient(ellipse at 89% 4%, light-dark(#9993cd29, #777bb635), transparent 55%),
     radial-gradient(ellipse at 12% 82%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 61%),
@@ -162,36 +159,6 @@ button, summary { cursor: pointer; }
   justify-self: end;
   gap: .35rem;
 }
-
-.glass-setting {
-  position: relative;
-  display: inline-flex;
-  min-height: 2.75rem;
-  align-items: center;
-  gap: .35rem;
-  padding-inline: .6rem;
-  border: 1px solid var(--line);
-  border-radius: 2rem;
-  color: var(--muted);
-  font-size: .875rem;
-  font-weight: 650;
-}
-
-.glass-setting select {
-  width: 3.5rem;
-  min-height: 2.625rem;
-  appearance: none;
-  padding-right: .9rem;
-  border-radius: .4rem;
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.glass-setting:focus-within { border-color: var(--accent); }
-.glass-setting select:focus-visible { outline-offset: 1px; }
-.glass-setting option { background: var(--surface); }
-.glass-chevron { position: absolute; right: .55rem; pointer-events: none; }
 
 .icon-button {
   display: grid;
@@ -1126,7 +1093,7 @@ button, summary { cursor: pointer; }
 @media (max-width: 760px) {
   html { scroll-padding-top: 5.5rem; }
   .header-inner { min-height: 4.2rem; }
-  .desktop-nav, .header-email, .header-actions .glass-setting { display: none; }
+  .desktop-nav, .header-email { display: none; }
   .mobile-nav { display: block; justify-self: start; }
   .mobile-nav summary { list-style: none; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
@@ -1145,17 +1112,6 @@ button, summary { cursor: pointer; }
   }
   .mobile-nav a { display: flex; min-height: 2.75rem; align-items: center; font-weight: 700; }
   .mobile-nav a::after { bottom: .35rem; }
-  .glass-setting-mobile {
-    width: 100%;
-    margin-top: .3rem;
-    padding: .12rem 0 0;
-    border: 0;
-    border-top: 1px solid var(--line);
-    border-radius: 0;
-  }
-  .glass-setting-mobile select { margin-left: auto; }
-  .glass-setting-mobile .glass-chevron { right: 0; }
-
   .hero {
     width: min(100% - 2.25rem, 34rem);
     grid-template-columns: minmax(0, 1fr);
@@ -1198,7 +1154,6 @@ button, summary { cursor: pointer; }
   .reveal { transform: none !important; }
   .timeline-progress { transform: none !important; }
   .artwork-animation-button { display: none; }
-  .glass-setting { display: none; }
 }
 
 @media print {
