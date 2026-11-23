@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import About from "@/components/About";
+import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import PageHeading from "@/components/PageHeading";
 import Skills from "@/components/Skills";
@@ -14,8 +15,9 @@ export default function AboutPage() {
     <>
       <PageHeading title="About" emphasis="me." />
       <About />
-      <Skills />
       <Experience />
+      <Education />
+      <Skills />
     </>
   );
 }

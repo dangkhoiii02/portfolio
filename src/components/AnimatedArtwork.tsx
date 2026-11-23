@@ -4,30 +4,35 @@ import { Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-const poster = "/assets/technical-toolkit.webp";
-const animation = "/assets/technical-toolkit.gif";
+type AnimatedArtworkProps = {
+  asset: string;
+  label: string;
+  width: number;
+  height: number;
+};
 
-export default function ToolkitArtwork() {
+export default function AnimatedArtwork({ asset, label, width, height }: AnimatedArtworkProps) {
   const [playing, setPlaying] = useState(true);
-  const label = playing ? "Pause toolkit animation" : "Play toolkit animation";
+  const poster = `/assets/${asset}.webp`;
+  const animation = `/assets/${asset}.gif`;
   const Icon = playing ? Pause : Play;
 
   return (
-    <div className="toolkit-artwork">
+    <div className="animated-artwork">
       <picture>
         <source media="(prefers-reduced-motion: reduce)" srcSet={poster} />
         <Image
           src={playing ? animation : poster}
-          width={960}
-          height={384}
+          width={width}
+          height={height}
           alt=""
           unoptimized
         />
       </picture>
       <button
         type="button"
-        className="toolkit-animation-button"
-        aria-label={label}
+        className="artwork-animation-button"
+        aria-label={`${playing ? "Pause" : "Play"} ${label} animation`}
         onClick={() => setPlaying(current => !current)}
       >
         <Icon size={16} aria-hidden="true" />
