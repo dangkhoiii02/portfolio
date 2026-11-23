@@ -52,10 +52,11 @@ export default function HomeSectionNav() {
 
   return (
     <nav className="home-section-nav" aria-label="On this page">
-      <p aria-hidden="true">On this page</p>
       <ul>
         {sections.map(({ id, label }) => (
-          <li key={id}><a href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a></li>
+          <li key={id}>
+            <a href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>
+          </li>
         ))}
       </ul>
     </nav>

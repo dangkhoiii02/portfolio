@@ -73,38 +73,42 @@ function CareFlowFeature() {
 
 function HomeExperience() {
   return (
-    <section id="experience" className="shell inner-section" aria-labelledby="home-experience-title">
+    <section id="experience" className="shell inner-section home-credentials" aria-labelledby="home-experience-title">
       <h2 id="home-experience-title" className="inner-title">Experience<span>.</span></h2>
       <Reveal>
-        <ol className="profile-card home-experience-list">
+        <ol className="home-experience-list">
           <li>
-            <div className="home-experience-meta">
-              <BriefcaseBusiness className="home-entry-icon" size={20} aria-hidden="true" />
-              <div>
-                <p className="profile-meta">{internship.period}</p>
-                <p className="home-organization">{internship.company}</p>
-                <p className="profile-meta">{profile.location}</p>
-              </div>
-            </div>
-            <div>
-              <h3>{internship.role}</h3>
+            <BriefcaseBusiness className="home-experience-marker" size={20} aria-hidden="true" />
+            <article className="profile-card home-experience-card">
+              <header>
+                <div>
+                  <h3>{internship.role}</h3>
+                  <p className="home-organization">{internship.company}</p>
+                </div>
+                <div className="home-experience-meta">
+                  <p className="home-experience-date">{internship.period}</p>
+                  <p>{profile.location}</p>
+                </div>
+              </header>
               <ul className="timeline-contributions">
                 {internship.contributions.map(contribution => <li key={contribution}>{contribution}</li>)}
               </ul>
-            </div>
+            </article>
           </li>
           <li>
-            <div className="home-experience-meta">
-              <Network className="home-entry-icon" size={20} aria-hidden="true" />
-              <div>
-                <p className="profile-meta">{studentResearch.period}</p>
-                <p className="home-organization">{studentResearch.organization}</p>
-              </div>
-            </div>
-            <div>
-              <h3>{studentResearch.title}</h3>
+            <Network className="home-experience-marker" size={20} aria-hidden="true" />
+            <article className="profile-card home-experience-card">
+              <header>
+                <div>
+                  <h3>{studentResearch.title}</h3>
+                  <p className="home-organization">{studentResearch.organization}</p>
+                </div>
+                <div className="home-experience-meta">
+                  <p className="home-experience-date">{studentResearch.period}</p>
+                </div>
+              </header>
               <p>{studentResearch.contribution}</p>
-            </div>
+            </article>
           </li>
         </ol>
       </Reveal>
@@ -115,10 +119,10 @@ function HomeExperience() {
 
 function HomeSkills() {
   return (
-    <section id="skills" className="shell inner-section" aria-labelledby="home-skills-title">
+    <section id="skills" className="shell inner-section home-credentials" aria-labelledby="home-skills-title">
       <h2 id="home-skills-title" className="inner-title">Skills<span>.</span></h2>
       <Reveal>
-        <dl className="profile-card home-skills-list">
+        <dl className="home-skills-list">
           {skills.map(({ title, icon: Icon, detail }) => (
             <div key={title}>
               <dt><Icon className="home-entry-icon" size={20} aria-hidden="true" /> {title}</dt>
